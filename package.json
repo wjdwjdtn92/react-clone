@@ -1,0 +1,24 @@
+{
+  "name": "react-clone",
+  "version": "1.0.0",
+  "description": "vanillaJS 기반 react 기능 구현하기",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wjdwjdtn92/react-clone.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wjdwjdtn92/react-clone/issues"
+  },
+  "homepage": "https://github.com/wjdwjdtn92/react-clone#readme",
+  "devDependencies": {
+    "webpack": "^5.88.1",
+    "webpack-cli": "^5.1.4"
+  }
+}
