@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: "development",
-  entry: "./src/index.js",
+  entry: "./src/index.ts",
   devtool: "inline-source-map",
   plugins: [
     new HtmlWebpackPlugin({
@@ -20,9 +20,21 @@ module.exports = {
   },
   optimization: {
     runtimeChunk: "single",
+    splitChunks: {
+      //중복 의존성 제거
+      chunks: "all",
+    },
+  },
+  resolve: {
+    extensions: [".ts", ".js"],
   },
   module: {
     rules: [
+      {
+        test: /\.ts?$/,
+        use: "ts-loader",
+        exclude: /node_modules/,
+      },
       {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
