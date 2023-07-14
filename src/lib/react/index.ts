@@ -116,6 +116,7 @@ function React() {
       currentVNode = newVDom;
     };
 
+    hooks.data = [];
     rerender();
   };
 
