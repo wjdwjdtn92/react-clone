@@ -2,11 +2,11 @@ import React from '../../../lib/react';
 import { TodoType, VDomType } from '../../../types';
 import TodoItem from '../TodoItem';
 
-interface TodoInputProps {
+interface TodoListProps {
   todos: Array<TodoType>;
 }
 
-function TodoList({ todos }: TodoInputProps): VDomType {
+function TodoList({ todos }: TodoListProps): VDomType {
   const children = todos.map((todo) =>
     TodoItem({ text: todo.text, created: todo.created }),
   );

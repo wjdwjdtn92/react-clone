@@ -1,9 +1,9 @@
 import React from '../../../lib/react';
 import { TodoType, VDomType } from '../../../types';
 
-interface TodoInputProps extends TodoType {}
+interface TodoItemProps extends TodoType {}
 
-function TodoItem({ text, created }: TodoInputProps): VDomType {
+function TodoItem({ text, created }: TodoItemProps): VDomType {
   function formatTime(date: Date) {
     const hours = String(date.getHours()).padStart(2, '0');
     const minutes = String(date.getMinutes()).padStart(2, '0');
