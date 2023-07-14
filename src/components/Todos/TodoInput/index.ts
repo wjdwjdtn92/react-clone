@@ -19,6 +19,7 @@ function TodoInput({ onSubmit }: TodoInputProps): VDomType {
 
   return {
     type: 'form',
+    props: { class: 'mt-[16px]' },
     children: [
       {
         type: 'input',
