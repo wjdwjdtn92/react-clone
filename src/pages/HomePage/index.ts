@@ -1,14 +1,7 @@
 import Header from '../../components/share/Header';
-import useLoaction from '../../hooks/useLocation';
 import { VDomType } from '../../types';
 
 function HomePage(): VDomType {
-  const { navigate } = useLoaction();
-
-  const handleButtonClick = (url: string) => {
-    navigate(url);
-  };
-
   return {
     type: 'div',
     props: {
