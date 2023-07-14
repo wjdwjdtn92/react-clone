@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: './src/index.ts',
+  entry: './src/main.ts',
   devtool: 'inline-source-map',
   plugins: [
     new HtmlWebpackPlugin({
@@ -12,10 +12,12 @@ module.exports = {
   ],
   devServer: {
     static: './dist',
+    historyApiFallback: true,
   },
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
     clean: true,
   },
   optimization: {
@@ -37,7 +39,7 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
