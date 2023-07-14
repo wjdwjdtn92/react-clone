@@ -19,7 +19,8 @@
         "js": "never",
         "ts": "never"
       }
-    ]
+    ],
+    "no-unused-vars": 0
   },
   "settings": {
     "import/resolver": {
