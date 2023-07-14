@@ -1,3 +1,4 @@
+import Header from '../../components/shard/Header';
 import useLoaction from '../../hooks/useLocation';
 import { VDomType } from '../../types';
 
@@ -11,28 +12,14 @@ function HomePage(): VDomType {
   return {
     type: 'div',
     props: {
-      class: 'flex flex-col gap-10 justify-center items-center',
+      class: 'w-full h-full m-auto flex justify-center items-center',
     },
     children: [
+      Header(),
       {
-        type: 'button',
-        props: {
-          class: 'w-[100px]',
-          onClick: () => {
-            handleButtonClick('/');
-          },
-        },
-        children: ['go home'],
-      },
-      {
-        type: 'button',
-        props: {
-          class: 'w-[100px]',
-          onClick: () => {
-            handleButtonClick('/record');
-          },
-        },
-        children: ['go record'],
+        type: 'div',
+        props: { class: 'text-3xl' },
+        children: ['Home 입니다'],
       },
     ],
   };

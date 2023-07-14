@@ -1,3 +1,4 @@
+import Button from '../../components/shard/Button';
 import useLoaction from '../../hooks/useLocation';
 import { VDomType } from '../../types';
 
@@ -25,16 +26,7 @@ function NotFoundPage(): VDomType {
         props: { class: 'text-2xl text-orange-400' },
         children: ['해당 페이지를 찾을 수 없습니다'],
       },
-      {
-        type: 'button',
-        props: {
-          type: 'button',
-          class:
-            'text-2xl text-neutral-50 border-4 rounded-3xl border-sky-400 p-[16px] bg-sky-400 hover:text-sky-500 hover:bg-neutral-50  ',
-          onclick: handleButtonClick,
-        },
-        children: ['home으로 가기'],
-      },
+      Button({ onClick: handleButtonClick, children: '홈으로 가기' }),
     ],
   };
 }
