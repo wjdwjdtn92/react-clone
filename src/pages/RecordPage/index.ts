@@ -2,7 +2,7 @@ import { VDomType } from '../../types';
 import React from '../../lib/react';
 import TodoInput from '../../components/Todos/TodoInput';
 import TodoList from '../../components/Todos/TodoList/indes';
-import Header from '../../components/shard/Header';
+import Header from '../../components/share/Header';
 
 function RecordPage(): VDomType {
   const [todos, setTodos] = React.useState([]);

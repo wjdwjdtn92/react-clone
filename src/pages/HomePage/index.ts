@@ -1,4 +1,4 @@
-import Header from '../../components/shard/Header';
+import Header from '../../components/share/Header';
 import useLoaction from '../../hooks/useLocation';
 import { VDomType } from '../../types';
 

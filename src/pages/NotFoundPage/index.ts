@@ -1,4 +1,4 @@
-import Button from '../../components/shard/Button';
+import Button from '../../components/share/Button';
 import useLoaction from '../../hooks/useLocation';
 import { VDomType } from '../../types';
 
