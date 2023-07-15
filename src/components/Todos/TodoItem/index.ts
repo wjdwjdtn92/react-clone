@@ -5,14 +5,14 @@ import { TodoType, VDomType } from '../../../types';
 interface TodoItemProps extends TodoType {}
 
 function TodoItem({ text, created }: TodoItemProps): VDomType {
-  const displayDateTtext = React.useMemo(
+  const displayDateText = React.useMemo(
     () => format(created, 'HH:mm:ss'),
     [created],
   );
 
   return {
     type: 'li',
-    props: { class: 'flex' },
+    props: { class: 'flex gap-[4px]' },
     children: [
       {
         type: 'p',
@@ -20,7 +20,7 @@ function TodoItem({ text, created }: TodoItemProps): VDomType {
       },
       {
         type: 'p',
-        children: [String(displayDateTtext)],
+        children: [String(displayDateText)],
       },
     ],
   };
