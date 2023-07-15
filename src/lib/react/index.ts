@@ -49,26 +49,26 @@ function React() {
   };
 
   const useMemo = (getValue: (...args: any) => any, deps: any[]) => {
-    const { currentHook } = hooks;
+    const currentKey = hooks.currentHook;
     hooks.currentHook += 1;
 
     if (
-      hooks.data[currentHook] === undefined ||
-      hooks.data[currentHook].type !== 'memo'
+      hooks.data[currentKey] === undefined ||
+      hooks.data[currentKey].type !== 'memo'
     ) {
-      hooks.data[currentHook] = { type: 'memo', value: getValue(), deps };
+      hooks.data[currentKey] = { type: 'memo', value: getValue(), deps };
     } else {
-      const oldDeps = hooks.data[currentHook].deps;
+      const oldDeps = hooks.data[currentKey].deps;
       const hasDepsChanged = deps.some(
         (dep, index) => !Object.is(dep, oldDeps[index]),
       );
 
       if (hasDepsChanged) {
-        hooks.data[currentHook] = { type: 'memo', value: getValue(), deps };
+        hooks.data[currentKey] = { type: 'memo', value: getValue(), deps };
       }
     }
 
-    return hooks.data[currentHook].value;
+    return hooks.data[currentKey].value;
   };
 
   const createElement = (vDom: VDomType | string): HTMLElement | Text => {
