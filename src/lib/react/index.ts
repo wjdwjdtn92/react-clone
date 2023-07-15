@@ -30,9 +30,7 @@ function React() {
       rerender();
     };
 
-    const getSate = () => hooks.data[currentKey].value;
-
-    return [getSate(), setState];
+    return [hooks.data[currentKey].value, setState];
   };
 
   const useRef = <T>(initialValue: T | null = null) => {
