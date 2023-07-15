@@ -26,7 +26,7 @@ function NotFoundPage(): VDomType {
         props: { class: 'text-2xl text-orange-400' },
         children: ['해당 페이지를 찾을 수 없습니다'],
       },
-      Button({ onClick: handleButtonClick, children: '홈으로 가기' }),
+      Button({ onClick: handleButtonClick, children: ['홈으로 가기'] }),
     ],
   };
 }
