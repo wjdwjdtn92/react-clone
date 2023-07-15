@@ -14,12 +14,12 @@ function Header(): VDomType {
     children: [
       Button({
         onClick: () => navigate('/record'),
-        children: 'Go to Record',
+        children: ['Go to Record'],
       }),
-      Button({ onClick: () => navigate('/'), children: 'Home' }),
+      Button({ onClick: () => navigate('/'), children: ['Home'] }),
       Button({
         onClick: () => navigate('/record'),
-        children: 'Record',
+        children: ['Record'],
       }),
     ],
   };
