@@ -4,11 +4,12 @@ import TodoItem from '../TodoItem';
 
 interface TodoListProps {
   todos: Array<TodoType>;
+  onRemove: (id: string) => void;
 }
 
-function TodoList({ todos }: TodoListProps): VDomType {
+function TodoList({ todos, onRemove }: TodoListProps): VDomType {
   const children = todos.map((todo) =>
-    TodoItem({ text: todo.text, created: todo.created }),
+    TodoItem({ id: todo.id, text: todo.text, created: todo.created, onRemove }),
   );
 
   return {

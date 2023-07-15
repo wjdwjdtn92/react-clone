@@ -1,10 +1,13 @@
 import { format } from 'date-fns';
 import React from '../../../lib/react';
 import { TodoType, VDomType } from '../../../types';
+import Button from '../../share/Button';
 
-interface TodoItemProps extends TodoType {}
+interface TodoItemProps extends TodoType {
+  onRemove: (id: string) => void;
+}
 
-function TodoItem({ text, created }: TodoItemProps): VDomType {
+function TodoItem({ id, text, created, onRemove }: TodoItemProps): VDomType {
   const displayDateText = React.useMemo(
     () => format(created, 'HH:mm:ss'),
     [created],
@@ -12,7 +15,7 @@ function TodoItem({ text, created }: TodoItemProps): VDomType {
 
   return {
     type: 'li',
-    props: { class: 'flex gap-[4px]' },
+    props: { class: 'flex gap-[4px]', id },
     children: [
       {
         type: 'p',
@@ -22,6 +25,7 @@ function TodoItem({ text, created }: TodoItemProps): VDomType {
         type: 'p',
         children: [String(displayDateText)],
       },
+      Button({ onClick: () => onRemove(id), children: ['삭제'] }),
     ],
   };
 }
