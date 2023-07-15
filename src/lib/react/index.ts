@@ -83,6 +83,10 @@ function React() {
       return document.createTextNode(vDom);
     }
 
+    if (typeof vDom.type === 'function') {
+      return createElement(vDom.type(vDom.props));
+    }
+
     const { type, props = {}, children = [] } = vDom;
     const $element = document.createElement(type);
 
@@ -96,6 +100,33 @@ function React() {
         $element.setAttribute(name, props[name]);
       }
     });
+
+    const updateElement = (oldVDom: VDomType, newVDom: VDomType) => {
+      // 함수형 컴포넌트와 일반 vdom 타입 경우
+      if (typeof oldVDom.type !== typeof newVDom.type) {
+        // Todo: 요소 삭제후 createElement 후에 요소 변경하기
+      }
+
+      // 일반 vdom인 경우
+      if (
+        typeof oldVDom === 'object' &&
+        typeof newVDom === 'object' &&
+        oldVDom.type !== newVDom.type
+      ) {
+        // Todo: 요소 삭제후 createElement 후에 요소 변경하기
+      }
+
+      if (
+        typeof oldVDom.type === 'function' &&
+        typeof newVDom.type === 'function'
+      ) {
+        // Todo: Props 비교후 다른경우 createElement 후에 요소 변경하기
+      } else {
+        // Todo: Props 비교후 다른경우 변경된 props만 업데이트
+      }
+
+      // Todo: children 반복
+    };
 
     children.map(createElement).forEach(($childElement) => {
       if ($childElement !== undefined) {
