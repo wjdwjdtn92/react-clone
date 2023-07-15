@@ -1,18 +1,14 @@
+import { format } from 'date-fns';
 import React from '../../../lib/react';
 import { TodoType, VDomType } from '../../../types';
 
 interface TodoItemProps extends TodoType {}
 
 function TodoItem({ text, created }: TodoItemProps): VDomType {
-  function formatTime(date: Date) {
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    const seconds = String(date.getSeconds()).padStart(2, '0');
-
-    return `${hours}:${minutes}:${seconds}`;
-  }
-
-  const displayDateTtext = React.useMemo(() => formatTime(created), [created]);
+  const displayDateTtext = React.useMemo(
+    () => format(created, 'HH:mm:ss'),
+    [created],
+  );
 
   return {
     type: 'li',
