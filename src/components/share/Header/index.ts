@@ -5,10 +5,6 @@ import Button from '../Button';
 function Header(): VDomType {
   const { navigate } = useLoaction();
 
-  const handleButtonClick = (url: string) => {
-    navigate(url);
-  };
-
   return {
     type: 'div',
     props: {
@@ -17,12 +13,12 @@ function Header(): VDomType {
     },
     children: [
       Button({
-        onClick: () => handleButtonClick('/record'),
+        onClick: () => navigate('/record'),
         children: 'Go to Record',
       }),
-      Button({ onClick: () => handleButtonClick('/'), children: 'Home' }),
+      Button({ onClick: () => navigate('/'), children: 'Home' }),
       Button({
-        onClick: () => handleButtonClick('/record'),
+        onClick: () => navigate('/record'),
         children: 'Record',
       }),
     ],
