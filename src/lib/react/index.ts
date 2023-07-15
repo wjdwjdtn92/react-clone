@@ -71,6 +71,9 @@ function React() {
     return hooks.data[currentKey].value;
   };
 
+  const useCallback = <T>(callback: T, deps: any[]): T =>
+    useMemo(() => callback, deps);
+
   const createElement = (vDom: VDomType | string): HTMLElement | Text => {
     if (vDom === undefined) {
       return undefined;
@@ -124,6 +127,7 @@ function React() {
     useRef,
     useMemo,
     rerender,
+    useCallback,
   };
 }
 
