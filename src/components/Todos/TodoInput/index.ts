@@ -6,7 +6,7 @@ interface TodoInputProps {
 }
 
 function TodoInput({ onSubmit }: TodoInputProps): VDomType {
-  const todoInputRef = React.useRef(null);
+  const todoInputRef = React.useRef<HTMLInputElement>(null);
 
   const handleButtonClick = (event: any) => {
     event.preventDefault();
