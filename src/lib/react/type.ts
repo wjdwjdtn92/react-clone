@@ -1,5 +1,10 @@
+export enum HOOK_TYPE {
+  STATE,
+  MEMO,
+}
+
 export interface HooksDataType {
-  type: 'state' | 'memo';
+  type: HOOK_TYPE;
   value: any;
   deps?: Array<any>;
 }
