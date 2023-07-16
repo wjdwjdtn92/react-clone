@@ -1,5 +1,5 @@
 import { VDomType } from '../../types';
-import { HooksType } from './type';
+import { HOOK_TYPE, HooksType } from './type';
 
 function isEventProp(name: string, value: any) {
   return typeof value === 'function' && name.startsWith('on');
@@ -18,7 +18,7 @@ function React() {
     hooks.currentHook += 1;
 
     if (hooks.data[currentKey] === undefined) {
-      hooks.data[currentKey] = { type: 'state', value: initialValue };
+      hooks.data[currentKey] = { type: HOOK_TYPE.STATE, value: initialValue };
     }
 
     const setState = (newValue: T) => {
@@ -54,9 +54,13 @@ function React() {
 
     if (
       hooks.data[currentKey] === undefined ||
-      hooks.data[currentKey].type !== 'memo'
+      hooks.data[currentKey].type !== HOOK_TYPE.MEMO
     ) {
-      hooks.data[currentKey] = { type: 'memo', value: getValue(), deps };
+      hooks.data[currentKey] = {
+        type: HOOK_TYPE.MEMO,
+        value: getValue(),
+        deps,
+      };
     } else {
       const oldDeps = hooks.data[currentKey].deps;
       const hasDepsChanged = deps.some(
@@ -64,12 +68,19 @@ function React() {
       );
 
       if (hasDepsChanged) {
-        hooks.data[currentKey] = { type: 'memo', value: getValue(), deps };
+        hooks.data[currentKey] = {
+          type: HOOK_TYPE.MEMO,
+          value: getValue(),
+          deps,
+        };
       }
     }
 
     return hooks.data[currentKey].value;
   };
+
+  const useCallback = <T>(callback: T, deps: any[]): T =>
+    useMemo(() => callback, deps);
 
   const createElement = (vDom: VDomType | string): HTMLElement | Text => {
     if (vDom === undefined) {
@@ -78,6 +89,10 @@ function React() {
 
     if (typeof vDom === 'string') {
       return document.createTextNode(vDom);
+    }
+
+    if (typeof vDom.type === 'function') {
+      return createElement(vDom.type(vDom.props));
     }
 
     const { type, props = {}, children = [] } = vDom;
@@ -93,6 +108,33 @@ function React() {
         $element.setAttribute(name, props[name]);
       }
     });
+
+    const updateElement = (oldVDom: VDomType, newVDom: VDomType) => {
+      // 함수형 컴포넌트와 일반 vdom 타입 경우
+      if (typeof oldVDom.type !== typeof newVDom.type) {
+        // Todo: 요소 삭제후 createElement 후에 요소 변경하기
+      }
+
+      // 일반 vdom인 경우
+      if (
+        typeof oldVDom === 'object' &&
+        typeof newVDom === 'object' &&
+        oldVDom.type !== newVDom.type
+      ) {
+        // Todo: 요소 삭제후 createElement 후에 요소 변경하기
+      }
+
+      if (
+        typeof oldVDom.type === 'function' &&
+        typeof newVDom.type === 'function'
+      ) {
+        // Todo: Props 비교후 다른경우 createElement 후에 요소 변경하기
+      } else {
+        // Todo: Props 비교후 다른경우 변경된 props만 업데이트
+      }
+
+      // Todo: children 반복
+    };
 
     children.map(createElement).forEach(($childElement) => {
       if ($childElement !== undefined) {
@@ -124,6 +166,7 @@ function React() {
     useRef,
     useMemo,
     rerender,
+    useCallback,
   };
 }
 
