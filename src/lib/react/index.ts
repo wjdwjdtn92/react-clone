@@ -1,5 +1,5 @@
 import { VDomType } from '../../types';
-import { HooksType } from './type';
+import { HOOK_TYPE, HooksType } from './type';
 
 function isEventProp(name: string, value: any) {
   return typeof value === 'function' && name.startsWith('on');
@@ -18,7 +18,7 @@ function React() {
     hooks.currentHook += 1;
 
     if (hooks.data[currentKey] === undefined) {
-      hooks.data[currentKey] = { type: 'state', value: initialValue };
+      hooks.data[currentKey] = { type: HOOK_TYPE.STATE, value: initialValue };
     }
 
     const setState = (newValue: T) => {
@@ -54,9 +54,13 @@ function React() {
 
     if (
       hooks.data[currentKey] === undefined ||
-      hooks.data[currentKey].type !== 'memo'
+      hooks.data[currentKey].type !== HOOK_TYPE.MEMO
     ) {
-      hooks.data[currentKey] = { type: 'memo', value: getValue(), deps };
+      hooks.data[currentKey] = {
+        type: HOOK_TYPE.MEMO,
+        value: getValue(),
+        deps,
+      };
     } else {
       const oldDeps = hooks.data[currentKey].deps;
       const hasDepsChanged = deps.some(
@@ -64,7 +68,11 @@ function React() {
       );
 
       if (hasDepsChanged) {
-        hooks.data[currentKey] = { type: 'memo', value: getValue(), deps };
+        hooks.data[currentKey] = {
+          type: HOOK_TYPE.MEMO,
+          value: getValue(),
+          deps,
+        };
       }
     }
 
